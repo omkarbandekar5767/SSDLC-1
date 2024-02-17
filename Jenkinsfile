@@ -20,7 +20,7 @@ pipeline {
       }
     }
     
-    stage ('Software composition analysis') {
+   stage ('Software composition analysis') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o "./" 
@@ -29,9 +29,10 @@ pipeline {
                     --prettyPrint''', odcInstallation: 'owasp-dc'
 
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-		    //sh './dependency_check_report.sh'
+		   // sh './dependency_check_report.sh'
             }
         }
+    
     
     stage ('SAST - SonarQube') {
       steps {
@@ -71,7 +72,7 @@ pipeline {
             steps {
 	   //timeout(time: 3, unit: 'MINUTES') {
               sshagent(['app-server']) {
-                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/*'
+                //sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/*'
 		sh 'ssh -o  StrictHostKeyChecking=no ubuntu@54.146.50.221 "nohup java -jar /WebGoat/webgoat-server-v8.2.0-SNAPSHOT.jar &"'
                   }
 	     }
