@@ -9,7 +9,7 @@ pipeline {
         sh '''
                 echo "PATH = ${PATH}"
                 echo "M2_HOME = ${M2_HOME}"
-            '' 
+            ''' 
       }
      }
     
@@ -20,18 +20,18 @@ pipeline {
       }
     }
     
-   // stage ('Software composition analysis') {
-   //          steps {
-   //              dependencyCheck additionalArguments: ''' 
-   //                  -o "./" 
-   //                  -s "./"
-   //                  -f "ALL" 
-   //                  --prettyPrint''', odcInstallation: 'owasp-dc'
+   stage ('Software composition analysis') {
+            steps {
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'owasp-dc'
 
-   //              dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-		 //   // sh './dependency_check_report.sh'
-   //          }
-   //      }
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+		   // sh './dependency_check_report.sh'
+            }
+        }
     
     
     stage ('SAST - SonarQube') {
@@ -106,5 +106,4 @@ pipeline {
 	  
    }  
 }
-  }
-}
+
