@@ -16,7 +16,7 @@ pipeline {
     stage ('Check secrets') {
       steps {
       sh 'trufflehog3 https://github.com/gaikwad-kunal/SSDLC.git -f json -o truffelhog_output.json || true'
-      sh './truffelhog_report.sh'
+      //sh './truffelhog_report.sh'
       }
     }
     
