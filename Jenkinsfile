@@ -23,7 +23,7 @@ pipeline {
    stage ('Software composition analysis') {
             steps {
                 dependencyCheck additionalArguments: ''' 
-                   // -o "./" 
+                    -o "./" 
                     -s "./"
                     -f "ALL" 
                     --prettyPrint''', odcInstallation: 'owasp-dc'
@@ -105,4 +105,6 @@ pipeline {
  //    }	  
 	  
    }  
+}
+  }
 }
