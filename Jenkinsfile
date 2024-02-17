@@ -38,7 +38,7 @@ pipeline {
         withSonarQubeEnv('sonar') {
           sh 'mvn clean sonar:sonar -Dsonar.java.binaries=src'
 	  //sh 'sudo python3 sonarqube.py'
-	  sh './sonarqube_report.sh'
+	 // sh './sonarqube_report.sh'
         }
       }
     }
