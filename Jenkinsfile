@@ -67,23 +67,23 @@ pipeline {
         sh 'mvn clean install -DskipTests'
       }
     }  
- stage ('Deploy-To-Tomcat') {
-      steps  {
-        sshagent (['app-server']) {
-          sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/tomcat/apache-tomcat-9.0.85/webapps/webgoat-server-v8.2.0-SNAPSHOT.jar'
-        }
-      }
-  }
-  //  stage ('Deploy to server') {
-  //           steps {
-	 //   timeout(time: 3, unit: 'MINUTES') {
-  //             sshagent(['app-server']) {
-  //               sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/webgoat.war'
-		// sh 'ssh -o  StrictHostKeyChecking=no ubuntu@54.146.50.221 "nohup java -jar /WebGoat/webgoat-server-v8.2.0-SNAPSHOT.jar &"'
-  //                 }
-	 //     }
-  //       }     
-  //  }
+ // stage ('Deploy-To-Tomcat') {
+ //      steps  {
+ //        sshagent (['app-server']) {
+ //          sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/tomcat/apache-tomcat-9.0.85/webapps/webgoat-server-v8.2.0-SNAPSHOT.jar'
+ //        }
+ //      }
+ //  }
+   stage ('Deploy to server') {
+            steps {
+	   timeout(time: 3, unit: 'MINUTES') {
+              sshagent(['app-server']) {
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/webgoat.war'
+		sh 'ssh -o  StrictHostKeyChecking=no ubuntu@54.146.50.221 "nohup java -jar /WebGoat/webgoat-server-v8.2.0-SNAPSHOT.jar &"'
+                  }
+	     }
+        }     
+   }
    
     stage ('DAST - OWASP ZAP') {
             steps {
