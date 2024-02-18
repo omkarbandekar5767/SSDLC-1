@@ -70,7 +70,7 @@ pipeline {
  stage ('Deploy-To-Tomcat') {
       steps  {
         sshagent (['tomcat']) {
-          sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@3.85.32.238:/prod/apache-tomcat-8.5.98/webapps/webapp.war'
+          sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@54.146.50.221:/tomcat/apache-tomcat-8.5.98/webapps/webapp.war'
         }
       }
   }
@@ -78,7 +78,7 @@ pipeline {
   //           steps {
 	 //   timeout(time: 3, unit: 'MINUTES') {
   //             sshagent(['app-server']) {
-  //               sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/'
+  //               sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/WebGoat/webgoat.war'
 		// sh 'ssh -o  StrictHostKeyChecking=no ubuntu@54.146.50.221 "nohup java -jar /WebGoat/webgoat-server-v8.2.0-SNAPSHOT.jar &"'
   //                 }
 	 //     }
