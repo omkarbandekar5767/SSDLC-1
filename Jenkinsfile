@@ -70,7 +70,7 @@ pipeline {
  stage ('Deploy-To-Tomcat') {
       steps  {
         sshagent (['app-server']) {
-          sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/tomcat/apache-tomcat-9.0.85/webapps'
+          sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/WebGoat-SecretManagement@2/webgoat-server/target/webgoat-server-v8.2.0-SNAPSHOT.jar ubuntu@54.146.50.221:/tomcat/apache-tomcat-9.0.85/webapps/webgoat-server-v8.2.0-SNAPSHOT.jar'
         }
       }
   }
